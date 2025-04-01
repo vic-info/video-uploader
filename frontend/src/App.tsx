@@ -66,9 +66,9 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
-      <div className="w-full max-w-md p-6 bg-gray-800 rounded-xl shadow space-y-4">
-        <h1 className="text-2xl font-semibold flex items-center gap-2">
+    <div className="container">
+      <div className="upload-form">
+        <h1 className="title">
           🎬 Video Uploader
         </h1>
 
@@ -77,30 +77,26 @@ export default function App() {
           accept="video/*"
           onChange={handleFileChange}
           disabled={uploading}
-          className="w-full"
         />
 
         <button
           onClick={uploadFileInChunks}
           disabled={!file || uploading}
-          className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50 w-full"
         >
           {uploading ? 'Uploading...' : 'Upload'}
         </button>
 
-        <div className="space-y-2">
-          <div className="w-full bg-gray-700 rounded h-3 overflow-hidden">
-            <div
-              className="bg-green-500 h-full transition-all duration-300"
-              style={{ width: `${progress}%` }}
-            ></div>
-          </div>
-          <div className="text-right text-sm text-gray-300">
-            {progress}% uploaded
-          </div>
+        <div className="progress-bar">
+          <div
+            className="progress-bar-fill"
+            style={{ width: `${progress}%` }}
+          ></div>
+        </div>
+        <div className="progress-text">
+          {progress}% uploaded
         </div>
 
-        <p className="text-sm text-gray-300">{status}</p>
+        <p className="status-text">{status}</p>
       </div>
     </div>
   );
