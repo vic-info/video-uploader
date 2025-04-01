@@ -1,5 +1,25 @@
+# Backend
 venv
 video
 saved_videos
 temp_chunks
 /app/__pycache__
+*.pyc
+
+# Frontend
+frontend/node_modules
+frontend/dist
+frontend/dist-ssr
+frontend/*.local
+frontend/src/config.ts
+
+# Editor and System files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
