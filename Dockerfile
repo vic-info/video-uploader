@@ -68,6 +68,9 @@ COPY app/ app/
 RUN mkdir -p /app/temp_chunks /app/saved_videos && \
     chmod 777 /app/temp_chunks /app/saved_videos
 
+# 设置环境变量
+ENV IN_DOCKER=1
+
 # 创建启动脚本
 RUN echo '#!/bin/bash\n\
 nginx\n\

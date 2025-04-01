@@ -2,3 +2,4 @@ venv
 video
 saved_videos
 temp_chunks
+/app/__pycache__
