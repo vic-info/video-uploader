@@ -12,6 +12,7 @@ frontend/dist
 frontend/dist-ssr
 frontend/*.local
 frontend/src/config.ts
+frontend/.env
 
 # Editor and System files
 .vscode/*
