@@ -42,7 +42,7 @@ RUN echo 'server {\n\
     }\n\
     \n\
     location /upload_chunk {\n\
-        proxy_pass http://localhost:8000;\n\
+        proxy_pass http://127.0.0.1:8000;\n\
         proxy_set_header Host $host;\n\
         proxy_set_header X-Real-IP $remote_addr;\n\
         proxy_read_timeout 600;\n\
@@ -52,7 +52,7 @@ RUN echo 'server {\n\
     }\n\
     \n\
     location /merge_chunks {\n\
-        proxy_pass http://localhost:8000;\n\
+        proxy_pass http://127.0.0.1:8000;\n\
         proxy_set_header Host $host;\n\
         proxy_set_header X-Real-IP $remote_addr;\n\
         proxy_read_timeout 600;\n\
