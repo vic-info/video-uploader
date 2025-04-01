@@ -45,7 +45,6 @@ export default function App() {
       setProgress(Math.round(((i + 1) / totalChunks) * 100));
     }
 
-    // Merge chunks
     const mergeForm = new FormData();
     mergeForm.append('filename', filename);
     mergeForm.append('total_chunks', totalChunks.toString());
@@ -67,32 +66,42 @@ export default function App() {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 mt-10 bg-white rounded-xl shadow space-y-4">
-      <h1 className="text-xl font-semibold">🎬 Video Uploader</h1>
+    <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
+      <div className="w-full max-w-md p-6 bg-gray-800 rounded-xl shadow space-y-4">
+        <h1 className="text-2xl font-semibold flex items-center gap-2">
+          🎬 Video Uploader
+        </h1>
 
-      <input
-        type="file"
-        accept="video/*"
-        onChange={handleFileChange}
-        className="w-full"
-      />
+        <input
+          type="file"
+          accept="video/*"
+          onChange={handleFileChange}
+          disabled={uploading}
+          className="w-full"
+        />
 
-      <button
-        onClick={uploadFileInChunks}
-        disabled={!file || uploading}
-        className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
-      >
-        {uploading ? 'Uploading...' : 'Upload'}
-      </button>
+        <button
+          onClick={uploadFileInChunks}
+          disabled={!file || uploading}
+          className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50 w-full"
+        >
+          {uploading ? 'Uploading...' : 'Upload'}
+        </button>
 
-      <div className="h-2 bg-gray-200 rounded">
-        <div
-          className="h-full bg-green-500 rounded transition-all"
-          style={{ width: `${progress}%` }}
-        ></div>
+        <div className="space-y-2">
+          <div className="w-full bg-gray-700 rounded h-3 overflow-hidden">
+            <div
+              className="bg-green-500 h-full transition-all duration-300"
+              style={{ width: `${progress}%` }}
+            ></div>
+          </div>
+          <div className="text-right text-sm text-gray-300">
+            {progress}% uploaded
+          </div>
+        </div>
+
+        <p className="text-sm text-gray-300">{status}</p>
       </div>
-
-      <p className="text-sm text-gray-600">{status}</p>
     </div>
   );
 }
