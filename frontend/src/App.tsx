@@ -37,7 +37,7 @@ export default function App() {
       formData.append('total_chunks', totalChunks.toString());
       formData.append('upload_id', uploadId);
 
-      await fetch('http://localhost:8000/upload_chunk', {
+      await fetch('/upload_chunk', {
         method: 'POST',
         body: formData,
       });
@@ -50,7 +50,7 @@ export default function App() {
     mergeForm.append('total_chunks', totalChunks.toString());
     mergeForm.append('upload_id', uploadId);
 
-    const res = await fetch('http://localhost:8000/merge_chunks', {
+    const res = await fetch('/merge_chunks', {
       method: 'POST',
       body: mergeForm,
     });
