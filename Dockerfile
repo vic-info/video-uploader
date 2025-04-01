@@ -30,6 +30,7 @@ COPY --from=frontend-builder /frontend-build/dist /app/static
 RUN echo 'server {\n\
     listen 80;\n\
     server_name localhost;\n\
+    client_max_body_size 0;\n\
     \n\
     location / {\n\
         root /app/static;\n\
@@ -40,12 +41,19 @@ RUN echo 'server {\n\
         proxy_pass http://localhost:8000;\n\
         proxy_set_header Host $host;\n\
         proxy_set_header X-Real-IP $remote_addr;\n\
+        proxy_read_timeout 600;\n\
+        proxy_connect_timeout 600;\n\
+        proxy_send_timeout 600;\n\
+        proxy_request_buffering off;\n\
     }\n\
     \n\
     location /merge_chunks {\n\
         proxy_pass http://localhost:8000;\n\
         proxy_set_header Host $host;\n\
         proxy_set_header X-Real-IP $remote_addr;\n\
+        proxy_read_timeout 600;\n\
+        proxy_connect_timeout 600;\n\
+        proxy_send_timeout 600;\n\
     }\n\
 }' > /etc/nginx/conf.d/default.conf
 
