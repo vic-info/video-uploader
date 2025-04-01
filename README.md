@@ -5,13 +5,13 @@
 Need Python 3.8+
 
 ```
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
+chmod +x init.bash
+./init.bash
 ```
 
 ### Usage
 
+#### for S3 uploader
 ```
 python uploader.py --file <dir/to/video>
 ```
