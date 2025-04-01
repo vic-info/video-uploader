@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AUTH_CONFIG } from './config';
 
 const CHUNK_SIZE = 2 * 1024 * 1024; // 2MB
 const API_BASE_URL = import.meta.env.VITE_API_URL || '';
@@ -8,6 +9,19 @@ export default function App() {
   const [uploading, setUploading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [status, setStatus] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
+  const handlePasswordSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === AUTH_CONFIG.PASSWORD) {
+      setIsAuthenticated(true);
+      setPasswordError('');
+    } else {
+      setPasswordError('密码错误');
+    }
+  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.files?.[0] || null;
@@ -65,6 +79,31 @@ export default function App() {
 
     setUploading(false);
   };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="container">
+        <div className="upload-form">
+          <h1 className="title">
+            🔒 验证密码
+          </h1>
+          <form onSubmit={handlePasswordSubmit}>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="请输入密码"
+              className="password-input"
+            />
+            {passwordError && <p className="status-text" style={{color: '#ff4444'}}>{passwordError}</p>}
+            <button type="submit">
+              验证
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container">
