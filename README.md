@@ -27,7 +27,7 @@ python uploader.py --file <dir/to/video>
 #### Docker
 
 ```
-docker build -t video-uploader .
+docker build --build-arg 'VITE_PASSWORD=<upload-precheck-passwd>' -t video-uploader .
 docker run -p 80:80 \
   -v $(pwd)/saved_videos:/app/saved_videos \
   -v $(pwd)/temp_chunks:/app/temp_chunks \

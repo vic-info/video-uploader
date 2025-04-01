@@ -4,6 +4,10 @@ FROM node:18-alpine as frontend-builder
 # 设置前端工作目录
 WORKDIR /frontend-build
 
+# 设置环境变量
+ARG VITE_PASSWORD
+ENV VITE_PASSWORD=$VITE_PASSWORD
+
 # 复制前端项目文件
 COPY frontend/package*.json ./
 RUN npm install
