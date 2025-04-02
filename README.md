@@ -14,14 +14,6 @@ mkdir temp_chunks
 
 ### Usage
 
-#### for S3 uploader
-
-Need to set S3 IAM secret in `~/.aws/credentials`
-
-```
-python uploader.py --file <dir/to/video>
-```
-
 ### for uploader Web App
 
 #### Docker
@@ -37,6 +29,7 @@ docker run -p 80:80 \
 #### Backend
 
 ```
+echo "VITE_PASSWORD=<dev-passwd>" > ./frontend/.env
 source venv/bin/activate
 uvicorn app.main:app --reload
 ```
@@ -47,4 +40,12 @@ uvicorn app.main:app --reload
 cd frontend
 npm install
 npm run dev
+```
+
+#### for S3 uploader
+
+Need to set S3 IAM secret in `~/.aws/credentials`
+
+```
+python uploader.py --file <dir/to/video>
 ```

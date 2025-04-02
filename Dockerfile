@@ -33,7 +33,8 @@ COPY --from=frontend-builder /frontend-build/dist /app/static
 # 配置nginx
 RUN echo 'server {\n\
     listen 80;\n\
-    server_name localhost;\n\
+    # change to your real domain name
+    server_name localhost;\n\ 
     client_max_body_size 0;\n\
     \n\
     location / {\n\
