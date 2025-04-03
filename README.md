@@ -41,11 +41,3 @@ cd frontend
 npm install
 npm run dev
 ```
-
-#### for S3 uploader
-
-Need to set S3 IAM secret in `~/.aws/credentials`
-
-```
-python uploader.py --file <dir/to/video>
-```
