@@ -29,7 +29,6 @@ docker run -p 80:80 \
 #### Backend
 
 ```
-echo "VITE_PASSWORD=<dev-passwd>" > ./frontend/.env
 source venv/bin/activate
 uvicorn app.main:app --reload
 ```
@@ -37,6 +36,7 @@ uvicorn app.main:app --reload
 #### Frontend
 
 ```
+echo "VITE_PASSWORD=<dev-passwd>" > ./frontend/.env
 cd frontend
 npm install
 npm run dev
